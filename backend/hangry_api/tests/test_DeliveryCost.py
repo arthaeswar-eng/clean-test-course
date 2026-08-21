@@ -1,13 +1,12 @@
 from api.controllers import Delivery
-from types import SimpleNamespace
+from django_mock_queries.query import MockSet, MockModel
 
 def test_LotsOfItems():
   #Arrange
-  order = [
-    SimpleNamespace(quantity=5),
-    SimpleNamespace(quantity=5),
-    SimpleNamespace(quantity=5),
-  ]
+  order = MockSet()
+  order.add(MockModel(quantity=5))
+  order.add(MockModel(quantity=5))
+  order.add(MockModel(quantity=5))
   delivery_distance = 6
   #Act
   cost = Delivery.calculate(order,delivery_distance)
@@ -16,11 +15,10 @@ def test_LotsOfItems():
 
 def test_MiddleOfTheRoadItems():
   #Arrange
-  order = [
-    SimpleNamespace(quantity=2),
-    SimpleNamespace(quantity=2),
-    SimpleNamespace(quantity=2),
-  ]
+  order = MockSet()
+  order.add(MockModel(quantity=2))
+  order.add(MockModel(quantity=2))
+  order.add(MockModel(quantity=2))
   delivery_distance = 4
   #Act
   cost = Delivery.calculate(order,delivery_distance)
@@ -29,9 +27,9 @@ def test_MiddleOfTheRoadItems():
 
 def test_LittleItems():
   #Arrange
-  order = [SimpleNamespace(quantity=1)]
-  delivery_distance = 1
+  # TODO: Arrange the items to run the test
   #Act
-  cost = Delivery.calculate(order,delivery_distance)
+  # TODO: Call the function that will be tested
   #Assert
-  assert cost == 3.5
+  # TODO: replace the pass with an assert to test the value returned.
+  pass
